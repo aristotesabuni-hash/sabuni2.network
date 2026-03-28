@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        /* Style pour la zone de danger (Admin uniquement) */
+.danger-zone {
+    border: 2px solid #f5c6cb;
+    background-color: #fff5f5;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 30px;
+}
+
+.danger-zone h4 {
+    color: #721c24;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Bouton de suppression critique */
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Badge pour les rôles utilisateurs */
+.badge-role {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* On réutilise tes styles existants pour la cohérence visuelle */
+.purchase-page-container {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+}
+
+.invoice-header {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+    </style>
+</head>
+<body>
+    <div class="purchase-page-container">
+    <h3 style="text-align: center; margin-bottom: 25px;">⚙️ Paramètres & Administration</h3>
+
+    <div class="invoice-header" style="background: #fdfdfd; border: 1px solid #ddd; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h4 style="margin-top: 0; color: #2c3e50;">Gestion des Comptes</h4>
+        <div class="purchase-form form-inline" style="display: flex; gap: 10px; align-items: flex-end;">
+            <div class="form-group" style="flex: 2;">
+                <label>Nom complet</label>
+                <input type="text" id="userName" placeholder="Ex: Aristote Sabuni">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>Identifiant</label>
+                <input type="text" id="userLogin" placeholder="Login">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>Mot de passe</label>
+                <input type="password" id="userPass" placeholder="****">
+            </div>
+            <button type="button" onclick="creerUtilisateur()" class="btn-add" style="background: #2c3e50; color: white;">Créer</button>
+        </div>
+
+        <table class="purchase-table" style="width: 100%; margin-top: 20px;">
+            <thead>
+                <tr style="text-align: left; background: #eee;">
+                    <th style="padding: 10px;">NOM</th>
+                    <th style="padding: 10px;">LOGIN</th>
+                    <th style="padding: 10px;">RÔLE</th>
+                    <th style="padding: 10px;">ACTION</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyUsers">
+                </tbody>
+        </table>
+    </div>
+
+    <div style="border: 1px solid #fac1c1; background: #fff5f5; padding: 20px; border-radius: 10px;">
+        <h4 style="color: #c0392b; margin-top: 0;">Zone de Danger (Admin)</h4>
+        <p style="font-size: 13px; color: #666;">Actions irréversibles sur la base de données.</p>
+        <button onclick="nettoyerArticles()" style="background: #e74c3c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+            Supprimer tous les articles (Reset Stock)
+        </button>
+    </div>
+</div>
+ <script src="script.js"></script>
+    
+    
+</body>
+</html>

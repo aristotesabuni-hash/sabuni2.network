@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sabuni- Accueil</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; height: 100vh; background-color: #f3f7fd; }
+
+        /* --- Barre du Haut (TopBar) --- */
+        .top-bar {
+            background-color: white;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        .brand h2 { color: #333; font-size: 20px; }
+        .top-icons { display: flex; gap: 20px; color: #556080; cursor: pointer; }
+
+        /* --- Conteneur Principal --- */
+        .app-container { display: flex; flex: 1; overflow: hidden; }
+
+        /* --- Barre Latérale (Sidebar) --- */
+        .sidebar {
+            width: 250px;
+            background-color: #1a2536; /* Bleu sombre de ta capture */
+            color: #d1d5db;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-links { list-style: none; margin-top: 10px; }
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .nav-links li a:hover { background-color: #111827; color: white; }
+        .nav-links li a i { margin-right: 15px; width: 20px; text-align: center; font-size: 18px; }
+
+        /* --- Zone de Contenu --- */
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+    </style>
+</head>
+    
+
+
+<body>
+
+    <header class="top-bar">
+        <div class="brand"><h2>sabuni</h2></div>
+        <div class="top-icons">
+            <i class="fa-regular fa-sun"></i>
+            <i class="fa-regular fa-bell"></i>
+            <i class="fa-regular fa-user-circle"></i>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <ul class="nav-links">
+                <li><a href="#"><i class="fa-solid fa-chart-line"></i> DashBoard</a></li>
+                <li><a href="achat.html"><i class="fa-solid fa-cart-shopping"></i> Achat</a></li>
+                <li><a href="command.html"><i class="fa-solid fa-box"></i> Commandes</a></li>
+                <li><a href="facturation.html"><i class="fa-solid fa-file-invoice-dollar"></i> Facturation</a></li>
+                <li><a href="stock.html"><i class="fa-solid fa-warehouse"></i> Stock</a></li>
+                <li><a href="caisse.html"><i class="fa-solid fa-cash-register"></i> Caisse</a></li>
+                <li><a href="comptablilite.html"><i class="fa-solid fa-calculator"></i> Comptabilité</a></li>
+                <li><a href="#"><i class="fa-solid fa-users"></i> Comptes</a></li>
+                <li><a href="parametre.html"><i class="fa-solid fa-gear"></i> Paramètres</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <h1>Tableau de bord</h1>
+        </main>
+    </div>
+</body>
+</html>

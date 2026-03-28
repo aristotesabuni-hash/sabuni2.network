@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <link rel="stylesheet" href="style.css"> </head>
+    <title>Facturation</title>
+    <style>
+        /* --- CONTENEUR PRINCIPAL (Ombre blanche comme sur ta capture) --- */
+.purchase-page-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    width: 95%;
+    max-width: 1100px;
+    margin: 20px auto;
+}
+
+h3 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border-left: 5px solid #2c3e50;
+    padding-left: 15px;
+}
+
+/* --- FORMULAIRE EN LIGNE (FLEXBOX) --- */
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end; /* Aligne le bas des champs avec le bouton */
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 150px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #dcdde1;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f8f9fa;
+}
+
+/* --- BOUTON AJOUTER (Bleu foncé comme Duka Boost) --- */
+.btn-add {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 11px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    height: 40px;
+}
+
+.btn-add:hover {
+    background-color: #34495e;
+}
+
+/* --- TABLEAU DES VENTES --- */
+.purchase-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.purchase-table th {
+    background-color: #f1f2f6;
+    color: #2f3640;
+    text-align: left;
+    padding: 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #dcdde1;
+}
+
+.purchase-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f2f6;
+    font-size: 14px;
+}
+
+/* --- BOUTONS D'ACTION DANS LE TABLEAU --- */
+.btn-edit {
+    background-color: #ebedef;
+    color: #2c3e50;
+    border: 1px solid #dcdde1;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-delete {
+    background-color: #ebedef;
+    color: #c0392b;
+    border: 1px solid #dcdde1;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-edit:hover { background-color: #dcdde1; }
+.btn-delete:hover { background-color: #fadbd8; }
+
+/* --- TOTAL EN GRAS --- */
+strong {
+    color: #2c3e50;
+    font-size: 15px;
+}
+    </style>
+</head>
+<body>
+    <div class="purchase-page-container">
+    <h3>Gestion des Ventes - Effectuer une Vente</h3>
+    
+    <div class="purchase-form form-inline">
+        <div class="form-group">
+            <label for="clientNom">Nom du Client</label>
+            <input type="text" id="clientNom" placeholder="Nom du client">
+        </div>
+
+        <div class="form-group">
+            <label for="produitVente">Désignation Produit</label>
+            <input type="text" id="produitVente" placeholder="Nom du produit">
+        </div>
+        
+        <div class="form-group">
+            <label for="qteVente">Quantité</label>
+            <input type="number" id="qteVente" placeholder="0" min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="prixVente">Prix de Vente (USD)</label>
+            <input type="number" id="prixVente" placeholder="0.00" step="0.01">
+        </div>
+        <button onclick="enregistrerVente('panneau_solaire', 1)">Confirmer la vente</button>
+        <button type="button" onclick="ajouterVente()" class="btn-add">Ajouter à la vente</button>
+    </div>
+
+    <table class="purchase-table" id="tableVente">
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix Unit.</th>
+                <th>Total TTC</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyVente">
+            </tbody>
+    </table>
+    <script src="script.js"></script>
+</div>
+    
+</body>
+</html>

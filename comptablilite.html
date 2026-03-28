@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        /* Conteneur principal identique à l'Achat */
+.purchase-page-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 1200px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style de l'entête de saisie (Zone grise) */
+.invoice-header {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Style du Tableau Comptable */
+.purchase-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.purchase-table th {
+    background-color: #f1f3f5;
+    color: #2c3e50;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 15px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.purchase-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Ligne des totaux en bas (Footer) */
+.purchase-table tfoot td {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    font-size: 15px;
+    border-top: 2px solid #2c3e50;
+}
+
+/* Bouton "Passer l'écriture" */
+.btn-add {
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-add:active {
+    transform: scale(0.98);
+}
+
+/* Alertes d'équilibre (Vert/Rouge) */
+#alerteEquilibre {
+    transition: all 0.3s ease;
+    font-size: 14px;
+    border: 1px solid transparent;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="purchase-page-container">
+    <h3 style="text-align: center; margin-bottom: 25px;">Journal des Écritures Comptables</h3>
+
+    <div class="invoice-header" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+        <div class="purchase-form" style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
+            <div class="form-group" style="flex: 1;">
+                <label>Date</label>
+                <input type="date" id="dateCompta">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>N° Compte</label>
+                <input type="text" id="numCompte" placeholder="Ex: 571, 701">
+            </div>
+            <div class="form-group" style="flex: 2;">
+                <label>Libellé de l'opération</label>
+                <input type="text" id="libelleCompta" placeholder="Ex: Vent article">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>Débit ($)</label>
+                <input type="number" id="debitCompta" placeholder="0.00" step="0.01">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>Crédit ($)</label>
+                <input type="number" id="creditCompta" placeholder="0.00" step="0.01">
+            </div>
+            <button type="button" onclick="ajouterEcriture()" class="btn-add" style="background-color: #2c3e50; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                Passer l'écriture
+            </button>
+        </div>
+    </div>
+
+    <table class="purchase-table" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #f1f2f6; border-bottom: 2px solid #ccc;">
+                <th style="padding: 12px; text-align: left;">DATE</th>
+                <th style="padding: 12px; text-align: left;">N° COMPTE</th>
+                <th style="padding: 12px; text-align: left;">LIBELLÉ</th>
+                <th style="padding: 12px; text-align: right;">DÉBIT ($)</th>
+                <th style="padding: 12px; text-align: right;">CRÉDIT ($)</th>
+                <th style="padding: 12px; text-align: center;">ACTION</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyCompta">
+            </tbody>
+        <tfoot>
+            <tr style="background: #e9ecef; font-weight: bold;">
+                <td colspan="3" style="padding: 12px; text-align: right;">TOTAUX :</td>
+                <td id="totalDebit" style="padding: 12px; text-align: right; color: #2c3e50;">0.00 $</td>
+                <td id="totalCredit" style="padding: 12px; text-align: right; color: #2c3e50;">0.00 $</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div id="alerteEquilibre" style="margin-top: 15px; text-align: center; font-weight: bold; padding: 10px; border-radius: 5px; display: none;">
+    </div>
+</div>
+ <script src="script.js"></script>
+</body>
+</html>

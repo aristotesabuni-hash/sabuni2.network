@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+
+  
+    /* Styles généraux pour le corps de la page */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Gris clair pour faire ressortir le contenu */
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Conteneur principal de la section achat */
+.purchase-page-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* Titre principal */
+h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* LE SECRET DE L'ALIGNEMENT SUR UNE LIGNE */
+.form-inline {
+    display: flex; /* Active Flexbox */
+    flex-wrap: wrap; /* Permet le retour à la ligne si l'écran est trop petit (responsive) */
+    gap: 15px; /* Espace entre les éléments */
+    align-items: flex-end; /* Aligne le bas des champs avec le bas du bouton */
+    justify-content: center; /* Centre le formulaire sur la page */
+    margin-bottom: 30px;
+}
+
+/* Conteneur pour chaque paire Label/Input */
+.form-inline .form-group {
+    display: flex;
+    flex-direction: column; /* Force le label AU-DESSUS de son input */
+    flex: 1; /* Permet aux champs de prendre tout l'espace disponible (s'étirer) */
+    min-width: 200px; /* Largeur minimale pour éviter qu'ils soient trop petits */
+}
+
+/* Style des labels */
+.form-inline label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px; /* Espace entre le label et l'input */
+}
+
+/* Style des champs de saisie (input, select) */
+.form-inline input,
+.form-inline select {
+    padding: 10px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+/* Effet au survol/focus d'un champ */
+.form-inline input:focus,
+.form-inline select:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Style du bouton "Ajouter au panier" */
+.btn-add {
+    background-color: #2c3e50; /* Couleur sombre identique à ton menu d'accueil */
+    color: white;
+    border: none;
+    padding: 11px 20px; /* Un peu plus pour s'aligner avec les inputs */
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    height: 38px; /* Hauteur fixe pour s'aligner parfaitement */
+    align-self: flex-end; /* S'assure qu'il reste en bas de la ligne */
+}
+
+/* Effet au survol du bouton */
+.btn-add:hover {
+    background-color: #34495e;
+}
+
+/* --- Styles du tableau --- */
+.purchase-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.purchase-table th, 
+.purchase-table td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.purchase-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.purchase-table tr:hover {
+    background-color: #f1f4f8; /* Petit effet au survol de la ligne */
+
+/* Style du bouton Modifier */
+.btn-edit {
+    background-color: #f39c12; /* Orange pour l'action de modification */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: #e67e22;
+}
+
+/* Style du bouton Supprimer (pour rappel) */
+.btn-delete {
+    background-color: #e74c3c; /* Rouge pour la suppression */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* On ajuste la cellule des actions pour qu'elle soit assez large */
+.purchase-table td:last-child {
+    min-width: 160px;
+}    
+}
+.form-group {
+    flex: 1;
+    min-width: 120px; /* Réduit pour laisser de la place à la Marque */
+}
+
+/* Style du bouton imprimer (Bleu gris) */
+.btn-print {
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* --- CONFIGURATION POUR L'IMPRESSION --- */
+@media print {
+    /* Cache les menus, les formulaires de saisie et les boutons */
+    nav, .purchase-form, .btn-print, .btn-save, .btn-edit, .btn-delete, .invoice-header input {
+        display: none !important;
+    }
+
+    /* Enlève les ombres et les couleurs de fond du body pour économiser l'encre */
+    body {
+        background: white !important;
+        padding: 0 !important;
+    }
+
+    .purchase-page-container {
+        box-shadow: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Transforme les inputs de l'entête en texte simple pour l'impression */
+    .invoice-header input {
+        border: none !important;
+        background: transparent !important;
+        display: inline-block !important;
+    }
+
+    /* Affiche une bordure propre pour le tableau sur papier */
+    .purchase-table {
+        border: 1px solid #000 !important;
+    }
+    
+    .purchase-table th, .purchase-table td {
+        border: 1px solid #ddd !important;
+    }
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+
+  <div class="purchase-page-container">
+    <h3>Gestion des Achats & Facturation</h3>
+    
+    <div class="invoice-header" style="display: flex; gap: 15px; margin-bottom: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+        <div class="form-group">
+            <label>N° Facture</label>
+            <input type="text" id="numFacture" placeholder="FAC-001">
+        </div>
+        <div class="form-group">
+            <label>Fournisseur</label>
+            <input type="text" id="nomFournisseur" placeholder="Nom du fournisseur">
+        </div>
+    </div>
+
+    <div class="purchase-form form-inline">
+        <div class="form-group">
+            <label>Marque</label>
+            <input type="text" id="marqueAchat" placeholder="Marque">
+        </div>
+        <div class="form-group">
+            <label>Désignation</label>
+            <input type="text" id="nomProduitAchat" placeholder="Produit">
+        </div>
+        <div class="form-group">
+            <label>Qté</label>
+            <input type="number" id="qteAchat" placeholder="0">
+        </div>
+        <div class="form-group">
+            <label>P.U. ($)</label>
+            <input type="number" id="prixUnitAchat" placeholder="0.00" step="0.01">
+        </div>
+
+        <button onclick="enregistrerAchat('panneau_solaire', 1)">Valider l'achat</button>
+        <button type="button" onclick="ajouterAuPanier()" class="btn-add">Ajouter</button>
+    </div>
+
+    <table class="purchase-table">
+        <thead>
+            <tr>
+                <th>Marque</th>
+                <th>Désignation</th>
+                <th>Qté</th>
+                <th>P.U.</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyAchat"></tbody>
+    </table>
+
+    <div style="text-align: right; margin-top: 20px;">
+        <h4 id="grandTotalDisplay">Total Général : 0.00 $</h4>
+    </div>
+</div>
+<div class="actions-facture" style="margin-top: 20px; text-align: right;">
+    <h4 id="grandTotalDisplay">Total Général : 0.00 $</h4>
+    
+    <button type="button" class="btn-print" onclick="imprimerFacture()">
+        🖨️ Imprimer la Facture
+    </button>
+    
+    <button type="button" class="btn-save" onclick="validerFactureAchat()">
+        💾 Enregistrer
+    </button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+</body>
+</html>
