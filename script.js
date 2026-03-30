@@ -486,3 +486,21 @@ function afficherLeStock() {
 
 // 3. Lancer l'affichage au chargement de la page
 window.onload = afficherLeStock;
+
+
+document.getElementById('productSearch').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll('.swiver-table tbody tr');
+
+    rows.forEach(row => {
+        // On cherche dans la colonne Référence (index 2) et Libellé (index 3)
+        let ref = row.cells[2].textContent.toLowerCase();
+        let name = row.cells[3].textContent.toLowerCase();
+        
+        if (ref.includes(filter) || name.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});
